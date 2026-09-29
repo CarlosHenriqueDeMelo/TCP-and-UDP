@@ -1,6 +1,6 @@
 import socket
 
-HOST = "127.0.0.1"
+HOST = "10.0.99.150"
 PORT = 1211
 
 socket_udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
