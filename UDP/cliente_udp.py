@@ -5,8 +5,17 @@ PORT = 1211
 
 socket_udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
+print("Cliente UDP pronto. Digite /help para ver os comandos disponíveis.")
+
 while True:
-    message = input("Digite uma mensagem: ")
-    socket_udp.sendto(message.encode(), (HOST, PORT))
+    mensagem = input("Digite uma mensagem (/help para ajuda, /quit para sair): ")
+
+    if mensagem.strip().lower() == "/quit":
+        print("Encerrando cliente. Até logo!")
+        break
+
+    socket_udp.sendto(mensagem.encode(), (HOST, PORT))
     data, addr = socket_udp.recvfrom(1024)
-    print(f"Resposta recebida de {addr}: {data.decode()}")
+    print(data.decode())
+
+socket_udp.close()
