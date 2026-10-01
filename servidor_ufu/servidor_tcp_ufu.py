@@ -1,6 +1,7 @@
 import socket
 import datetime
 import platform
+import platform
 
 HOST = "0.0.0.0"
 PORT = 1211
@@ -11,6 +12,7 @@ AJUDA_GERAL = (
     "  /calc <n1> <op> <n2>  - Realiza uma operação matemática (+, -, *, /)\n"
     "  /time                 - Mostra a hora atual do servidor\n"
     "  /whoami               - Mostra seu endereço IP e porta\n"
+    "  /serverinfo           - Mostra informações do sistema do servidor\n"
     "  /serverinfo           - Mostra informações do sistema do servidor\n"
     "  /help                 - Lista todos os comandos\n"
     "  /help <comando>       - Mostra detalhes de um comando específico\n"
@@ -106,6 +108,12 @@ def processar_mensagem(texto, addr):
 
     if comando == "/whoami":
         return f"Seu endereço: {addr[0]}, porta: {addr[1]}"
+
+    if comando == "/serverinfo":
+        so = platform.system()
+        versao = platform.release()
+        arquitetura = platform.machine()
+        return f"Servidor rodando em: {so} {versao} ({arquitetura})"
 
     if comando == "/serverinfo":
         so = platform.system()
