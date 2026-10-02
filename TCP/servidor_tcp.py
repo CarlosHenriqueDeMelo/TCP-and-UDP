@@ -5,7 +5,7 @@ import platform
 HOST = "127.0.0.1"
 PORT = 1211
 
-# Textos de ajuda de cada comando (descrições em português)
+# Textos de ajuda de cada comando
 AJUDA_GERAL = (
     "Comandos disponíveis:\n"
     "  /calc <n1> <op> <n2>  - Realiza uma operação matemática (+, -, *, /)\n"
@@ -82,7 +82,7 @@ def processar_mensagem(texto, addr):
     """Decide o que fazer com a mensagem recebida e devolve a resposta (str)."""
     texto_limpo = texto.strip()
 
-    # Mensagem sem "/" no início -> apenas eco
+    # Mensagem sem "/" no início - apenas eco
     if not texto_limpo.startswith("/"):
         return texto
 
@@ -113,7 +113,6 @@ def processar_mensagem(texto, addr):
             return AJUDA_COMANDOS[nome_comando]
         return f"Comando '{nome_comando}' não encontrado. Digite /help para ver a lista completa."
 
-    # Comando desconhecido, mas começou com "/"
     return f"Comando '{comando}' não reconhecido. Digite /help para ver os comandos disponíveis."
 
 
@@ -121,14 +120,12 @@ def atender_cliente(conn, addr):
     """Cuida de toda a conversa com um cliente, do início ao /quit."""
     print(f"Conexão estabelecida com: {addr}")
 
-    # Mensagem de boas-vindas assim que a conexão é aberta
     boas_vindas = "Conectado ao servidor. Digite /help para ver os comandos disponíveis."
     conn.sendall(boas_vindas.encode())
 
     while True:
         data = conn.recv(1024)
 
-        # Cliente fechou o terminal/conexão abruptamente
         if not data:
             print(f"Cliente {addr} desconectou (conexão encerrada).")
             break

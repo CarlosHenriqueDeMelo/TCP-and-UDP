@@ -6,7 +6,6 @@ PORT = 1211
 socketTCP = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socketTCP.connect((HOST, PORT))
 
-# Recebe a mensagem de boas-vindas do servidor assim que conecta
 boas_vindas = socketTCP.recv(1024)
 print(boas_vindas.decode())
 

@@ -5,7 +5,7 @@ import platform
 HOST = "127.0.0.1"
 PORT = 1211
 
-# Textos de ajuda de cada comando (descrições em português)
+# Textos de ajuda de cada comando
 AJUDA_GERAL = (
     "Comandos disponíveis:\n"
     "  /calc <n1> <op> <n2>  - Realiza uma operação matemática (+, -, *, /)\n"
@@ -84,7 +84,7 @@ def processar_mensagem(texto, addr):
     """Decide o que fazer com a mensagem recebida e devolve a resposta (str)."""
     texto_limpo = texto.strip()
 
-    # Mensagem sem "/" no início -> apenas eco
+    # Mensagem sem "/" no início - apenas eco
     if not texto_limpo.startswith("/"):
         return texto
 
@@ -116,11 +116,8 @@ def processar_mensagem(texto, addr):
         return f"Comando '{nome_comando}' não encontrado. Digite /help para ver a lista completa."
 
     if comando == "/quit":
-        # No UDP o /quit é tratado apenas no cliente (não há conexão a encerrar aqui),
-        # mas respondemos de forma amigável caso o servidor receba esse comando.
         return "Este servidor UDP não mantém conexão; para sair, use /quit no seu cliente."
 
-    # Comando desconhecido, mas começou com "/"
     return f"Comando '{comando}' não reconhecido. Digite /help para ver os comandos disponíveis."
 
 
