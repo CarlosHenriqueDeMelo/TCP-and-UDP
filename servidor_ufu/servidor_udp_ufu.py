@@ -111,6 +111,7 @@ def processar_mensagem(texto, addr):
         return f"Seu endereço: {addr[0]}, porta: {addr[1]}"
 
     if comando == "/serverinfo":
+        so = platform.system()
         versao = platform.release()
         arquitetura = platform.machine()
         return f"Servidor rodando em: {so} {versao} ({arquitetura})"
