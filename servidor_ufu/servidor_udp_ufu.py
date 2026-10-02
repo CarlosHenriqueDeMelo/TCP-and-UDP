@@ -1,7 +1,6 @@
 import socket
 import datetime
 import platform
-import platform
 
 HOST = "0.0.0.0"
 PORT = 1211
